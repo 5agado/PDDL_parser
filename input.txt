@@ -1,0 +1,22 @@
+(define domain dockworkerrobotpos)
+ (:requirements :strips :typing )
+ (:types 
+  location      
+  pile            )
+
+ (:constants
+  pallet container)
+
+ (:predicates
+   (adjacent ?l1  ?l2 - location)       ; location ?l1 is adjacent ot ?l2
+   (attached ?p - pile ?l - location)  ; pile ?p attached to location ?l
+   (belong ?k - crane ?l - location)   ; crane ?k belongs to location ?
+   )
+(:action move                                
+     :parameters (?r - robot)
+     :precondition (and (adjacent ?from0 ?t1) (at ?r ?f))
+     :effect (and (at ?r ?t1) (free ?f) (not (holding ?k ?c)))
+)
+
+
+
