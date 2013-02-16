@@ -1,7 +1,7 @@
 (** Lexer for PDDL language  
 	
 		  @file lexer.mll
-		  @author Alex Martinelli
+		  @author Sagado
 *)
 
 {
@@ -12,7 +12,7 @@
 
 (* definitions section *)
 let white_space = [' '] | ['\t'] | ['\r'] | ['\n']
-let comment = ';'[^'\n']*'\n'
+let comment = [';']|[';'';'][^'\n']*'\n'
 let id = ['a'-'z']+
 let var = '?'['a'-'z']+['0'-'9']?
 

@@ -1,8 +1,12 @@
+;;ciao
 (define domain dockworkerrobotpos)
  (:requirements :strips :typing )
  (:types 
   location      
-  pile            )
+  pile            
+  crane
+  robot
+)
 
  (:constants
   pallet container)
@@ -13,6 +17,18 @@
    (belong ?k - crane ?l - location)   ; crane ?k belongs to location ?
    )
 (:action move                                
+     :parameters (?r - robot)
+     :precondition (and (adjacent ?from0 ?t1) (at ?r ?f))
+     :effect (and (at ?r ?t1) (free ?f) (not (holding ?k ?c)))
+)
+
+(:action try                                
+     :parameters (?r - robot)
+     :precondition (and (adjacent ?from0 ?t1) (at ?r ?f))
+     :effect (and (at ?r ?t1) (free ?f) (not (holding ?k ?c)))
+)
+
+(:action load                               
      :parameters (?r - robot)
      :precondition (and (adjacent ?from0 ?t1) (at ?r ?f))
      :effect (and (at ?r ?t1) (free ?f) (not (holding ?k ?c)))

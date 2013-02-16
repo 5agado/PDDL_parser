@@ -1,7 +1,7 @@
 (** Lexer for PDDL language  
 	
 		  @file main.ml
-		  @author Alex Martinelli
+		  @author Sagado
 *)
 
 let _ =

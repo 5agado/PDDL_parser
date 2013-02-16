@@ -1,7 +1,7 @@
 /* Lexer for PDDL language  
 	
 		  @file parser.mly
-		  @author Alex Martinelli
+		  @author Sagado
 */
 
 %token DEF
@@ -32,13 +32,13 @@
 %%
 
 main:
-	definition operators		{ $1^$2 }
+	definition operators  { $1^$2 }
 ;
 
 
 /* definition part */
 	definition:
-		LP define RP LP requirements RP LP TYP types RP LP CONST constants RP LP PRED predicates RP 	{$2^$5^$9^$13^$17}
+		LP define RP LP requirements RP LP TYP types RP LP CONST constants RP LP PRED predicates RP 	{$2^$5^"\ntypedef string "^$9^";\n"^$13^$17}
 	;
 
 	define:
@@ -51,16 +51,16 @@ main:
 
 	types:
 		ID	{$1}
-		| ID types	{"\ntypedef char "^$1^", "^$2}
+		| ID types	{$1^", "^$2}
 	;
 
 	constants:
-		types;	{"\n\nconst"^$1}
+		types;	{"\n//const "^$1}
 	;
 	
 	predicates:
-		LP ID vars RP		{"\nbool "^$2^" ("^$3^");"}
-		| LP ID vars RP predicates	{"\nbool "^$2^" ("^$3^");"^$5}
+		LP ID vars RP	{"\nbool "^$2^" ("^$3^"){it = propositions.find(("^$2^$3^")); if (it != propositions.end())return true; else return false; };"}
+		| LP ID vars RP predicates	{"\nbool "^$2^" ("^$3^")){it = propositions.find(("^$2^$3^"));if (it != propositions.end())return true;else return false; };"^$5}
 	;
 
 
@@ -99,7 +99,7 @@ main:
 
 vars:
 	var		{ $1 }
-	| var vars	{ $1^" "^$2 }
+	| var vars	{ $1^", "^$2 }
 ;
 
 var:
