@@ -1,4 +1,3 @@
-;;ciao
 (define domain dockworkerrobotpos)
  (:requirements :strips :typing )
  (:types 

@@ -1,7 +1,7 @@
 (** Lexer for PDDL language  
 	
 		  @file lexer.mll
-		  @author Sagado
+		  @author 5agado
 *)
 
 {

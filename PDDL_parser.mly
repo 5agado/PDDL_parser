@@ -1,7 +1,7 @@
 /* Lexer for PDDL language  
 	
 		  @file parser.mly
-		  @author Sagado
+		  @author 5agado
 */
 
 %token DEF
@@ -32,7 +32,7 @@
 %%
 
 main:
-	definition operators  { $1^$2 }
+	definition operators  {}
 ;
 
 
@@ -66,7 +66,7 @@ main:
 
 /* operators part */
 	operators:
-		LP ACT action RP			{ $3}
+		LP ACT action RP			{$3}
 	;
 
 	action:
